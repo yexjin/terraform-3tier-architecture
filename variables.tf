@@ -3,15 +3,10 @@ variable "prefix" {
   default = "lena"
 }
 
+## ssh-key ##
 variable "ssh_key" {
   type = string
   default = "my-keypair"
-}
-
-## os image ##
-variable "default_image" {
-  type = string
-  default = "Ubuntu 20.04"
 }
 
 ## network ##
@@ -113,17 +108,22 @@ variable "instances" {
       floating_ip_attached = true
       security_groups      = ["sg-mgmt"]
       key_pair             = "lena-key-27"
-      volumes = [
+      image = [
         { size = 25, image_name = "Edu-Bastion", image_id = 0 }
       ]
+      volumes = []
     },
     web01 = {
       flavor_name     = "a1-2-co"
       network_name    = "edu-subnet-web"
       security_groups = ["sg-web", "sg-mgmt"]
       key_pair        = "lena-key-27"
-      volumes = [
+      image = [
         { size = 25, image_name = "Ubuntu 20.04", image_id = 1 }
+      ]
+      volumes = [
+        { type = "block", size = 30, volume_name = "web01-volume" },
+        { type = "object", size = }
       ]
     },
     web02 = {
@@ -131,8 +131,11 @@ variable "instances" {
       network_name    = "edu-subnet-web"
       security_groups = ["sg-web", "sg-mgmt"]
       key_pair        = "lena-key-27"
-      volumes = [
+      image = [
         { size = 25, image_name = "Ubuntu 20.04" }
+      ]
+      volumes = [
+        { type = "block", size = 30, volume_name = "web02-volume" }
       ]
     },
     was01 = {
@@ -140,8 +143,11 @@ variable "instances" {
       network_name    = "edu-subnet-was"
       security_groups = ["sg-was", "sg-mgmt"]
       key_pair        = "lena-key-27"
-      volumes = [
+      image = [
         { size = 25, image_name = "CentOS 7.9" }
+      ]
+      volumes = [
+        { type = "block", size = 30, volume_name = "was01-volume" }
       ]
     },
     was02 = {
@@ -149,8 +155,11 @@ variable "instances" {
       network_name    = "edu-subnet-was"
       security_groups = ["sg-was", "sg-mgmt"]
       key_pair        = "lena-key-27"
-      volumes = [
+      image = [
         { size = 25, image_name = "CentOS 7.9" }
+      ]
+      volumes = [
+        { type = "block", size = 30, volume_name = "was02-volume" }
       ]
     },
   }

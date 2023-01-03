@@ -1,6 +1,6 @@
 ## os image ##
 data "openstack_images_image_v2" images {
-  for_each = local.volumes
+  for_each = local.image
 
   name = each.value
 }

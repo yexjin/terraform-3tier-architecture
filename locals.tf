@@ -1,19 +1,7 @@
 
 # local 블록은 variable과 비슷하지만, 각종 명령어를 통해 동적으로 생성되는 값을 할당할 수 있다.
+# for_each 를 위해 따로 정리할 리스트들
 locals {
-  # 이미지 정보를 미리 가져오기 위해서 사용하는 이미지 목록을 만들어 둠
-  # 중복을 없애기 위해 set으로 만들었음
-#  images = flatten([
-#    for i, instance in var.instances : [
-#      for k, volume in instance.volumes : {
-#      id         = "${volume.image_name}-${k}-${i}"
-#      size       = volume.size
-#      image_id = data.openstack_images_image_v2.images[volume.image_name].id
-#      }
-#    ]
-#  ])
-
-  # nested for_each가 불가하므로 security group의 rule만 뽑아 놓음
   secgroup_rules = flatten([
     for sg_k, sg_v in var.security_groups : [
       for i, rule in sg_v.rules : {
@@ -30,20 +18,10 @@ locals {
     ]
   ])
 
-  volumes = toset([
-    for instance in var.instances : instance.volumes[0].image_name
+  image = toset([
+    for instance in var.instances : instance.image[0].image_name
   ])
 
-#  volumes = tolist([
-#    for instance_k, instance_v in var.instances : [
-#      for i, volume in instance_v.volumes : {
-#        name       = "${instance_k}-disk-${i}"
-##        image_id = contains(keys(volume), "image_name") ? data.openstack_images_image_v2.images[volume.image_name].id : null
-#      }
-#    ]
-#  ])
-
-  # nested for_each가 불가하므로 LB의 pool의 member만 뽑아 놓음
   pool_members = flatten([
     for pool_k, pool_v in var.lb-pools : [
       for member_k, member_v in pool_v.members : {
