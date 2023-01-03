@@ -108,57 +108,58 @@ variable "security_groups" {
 variable "instances" {
   default = {
     bastion_host = {
-      flavor_name = "a1-2-co"
-      network_name = "edu-subnet-mgmt"
+      flavor_name          = "a1-2-co"
+      network_name         = "edu-subnet-mgmt"
       floating_ip_attached = true
-      security_groups = ["sg-mgmt"]
-      key_pair = "lena-key-27"
+      security_groups      = ["sg-mgmt"]
+      key_pair             = "lena-key-27"
       volumes = [
-        { size = 25, image_name = "Edu-Bastion" }
+        { size = 25, image_name = "Edu-Bastion" },
       ]
     },
-    web1 = {
-      flavor_name = "a1-2-co"
-      network_name = "edu-subnet-web"
+    web01 = {
+      flavor_name     = "a1-2-co"
+      network_name    = "edu-subnet-web"
       security_groups = ["sg-web", "sg-mgmt"]
-      key_pair = "lena-key-27"
+      key_pair        = "lena-key-27"
       volumes = [
         { size = 25, image_name = "Ubuntu 20.04" },
-        { size = 50 }
+        { size = 50 },
       ]
     },
-    web2 = {
-      flavor_name = "a1-2-co"
-      network_name = "edu-subnet-web"
+    web02 = {
+      flavor_name     = "a1-2-co"
+      network_name    = "edu-subnet-web"
       security_groups = ["sg-web", "sg-mgmt"]
-      key_pair = "lena-key-27"
+      key_pair        = "lena-key-27"
       volumes = [
         { size = 25, image_name = "Ubuntu 20.04" },
-        { size = 50 }
+        { size = 50 },
       ]
     },
-    was1 = {
-      flavor_name = "a1-2-co"
-      network_name = "edu-subnet-was"
+    was01 = {
+      flavor_name     = "a1-2-co"
+      network_name    = "edu-subnet-was"
       security_groups = ["sg-was", "sg-mgmt"]
-      key_pair = "lena-key-27"
+      key_pair        = "lena-key-27"
       volumes = [
         { size = 25, image_name = "CentOS 7.9" },
-        { size = 50 }
+        { size = 50 },
       ]
     },
-    was2 = {
-      flavor_name = "a1-2-co"
-      network_name = "edu-subnet-was"
+    was02 = {
+      flavor_name     = "a1-2-co"
+      network_name    = "edu-subnet-was"
       security_groups = ["sg-was", "sg-mgmt"]
-      key_pair = "lena-key-27"
+      key_pair        = "lena-key-27"
       volumes = [
         { size = 25, image_name = "CentOS 7.9" },
-        { size = 50 }
+        { size = 50 },
       ]
-    }
+    },
   }
 }
+
 
 ## LoadBalancers ##
 variable "loadbalancers" {
