@@ -1,9 +1,8 @@
 ## os image ##
 data "openstack_images_image_v2" images {
-  for_each = local.images
+  for_each = local.volumes
 
   name = each.value
-  most_recent = true
 }
 
 ## network ##

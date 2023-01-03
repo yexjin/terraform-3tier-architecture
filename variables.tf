@@ -114,7 +114,7 @@ variable "instances" {
       security_groups      = ["sg-mgmt"]
       key_pair             = "lena-key-27"
       volumes = [
-        { size = 25, image_name = "Edu-Bastion" },
+        { size = 25, image_name = "Edu-Bastion", image_id = 0 }
       ]
     },
     web01 = {
@@ -123,8 +123,7 @@ variable "instances" {
       security_groups = ["sg-web", "sg-mgmt"]
       key_pair        = "lena-key-27"
       volumes = [
-        { size = 25, image_name = "Ubuntu 20.04" },
-        { size = 50 },
+        { size = 25, image_name = "Ubuntu 20.04", image_id = 1 }
       ]
     },
     web02 = {
@@ -133,8 +132,7 @@ variable "instances" {
       security_groups = ["sg-web", "sg-mgmt"]
       key_pair        = "lena-key-27"
       volumes = [
-        { size = 25, image_name = "Ubuntu 20.04" },
-        { size = 50 },
+        { size = 25, image_name = "Ubuntu 20.04" }
       ]
     },
     was01 = {
@@ -143,8 +141,7 @@ variable "instances" {
       security_groups = ["sg-was", "sg-mgmt"]
       key_pair        = "lena-key-27"
       volumes = [
-        { size = 25, image_name = "CentOS 7.9" },
-        { size = 50 },
+        { size = 25, image_name = "CentOS 7.9" }
       ]
     },
     was02 = {
@@ -153,8 +150,7 @@ variable "instances" {
       security_groups = ["sg-was", "sg-mgmt"]
       key_pair        = "lena-key-27"
       volumes = [
-        { size = 25, image_name = "CentOS 7.9" },
-        { size = 50 },
+        { size = 25, image_name = "CentOS 7.9" }
       ]
     },
   }

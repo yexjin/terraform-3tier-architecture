@@ -27,10 +27,10 @@ resource "openstack_networking_port_v2" "port" {
 }
 
 ## Block storage ##
-resource "openstack_blockstorage_volume_v3" "volume" {
-  for_each = { for volume in local.volumes : "${volume.id}" => volume }
-
-  name     = each.key
-  size     = each.value.size
-  image_id = each.value.image_id
-}
+#resource "openstack_blockstorage_volume_v3" "volume" {
+#  for_each = { for volume in local.volumes : "${volume.id}" => volume }
+#
+#  name     = each.key
+#  size     = each.value.size
+#  image_id = each.value.image_id
+#}
